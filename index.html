@@ -1,1 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>charade212</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: white;
+      font-family: sans-serif;
+    }
+
+    /* Loader styles */
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    #loader img {
+      width: 100px;
+      animation: spin 3s linear infinite;
+      cursor: pointer;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Shop grid hidden initially */
+    #shop {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1s ease;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      padding: 50px;
+    }
+
+    .product {
+      text-align: center;
+    }
+
+    .product img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .product:hover img {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+<div id="loader">
+  <img src="/images/logo.png" alt="Charade212 Logo">
+</div>
+
+<div id="shop">
+  <!-- Example product -->
+  <div class="product">
+    <img src="/products/product1.jpg" alt="Product 1">
+    <p>Product Name</p>
+    <p>$50</p>
+  </div>
+  <!-- Add more products -->
+</div>
+
+<script>
+  const loader = document.getElementById('loader');
+  const shop = document.getElementById('shop');
+
+  loader.addEventListener('click', () => {
+    loader.style.display = 'none';
+    shop.style.opacity = 1;
+    shop.style.pointerEvents = 'auto';
+  });
+
+  // Optional: Auto-load after 5 seconds
+  // setTimeout(() => {
+  //   loader.style.display = 'none';
+  //   shop.style.opacity = 1;
+  //   shop.style.pointerEvents = 'auto';
+  // }, 5000);
+</script>
+
+</body>
+</html>
 
