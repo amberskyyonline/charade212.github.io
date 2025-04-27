@@ -99,3 +99,46 @@ function drawStars() {
   stars.forEach(star => {
     let k = 128.0 / star.z;
     let x = star.x * k +*
+      let x = star.x * k + w/2;
+let y = star.y * k + h/2;
+if (x >= 0 && x <= w && y >= 0 && y <= h) {
+  let size = (1 - star.z / w) * 3;
+  ctx.beginPath();
+  ctx.arc(x, y, size, 0, 2 * Math.PI);
+  ctx.fill();
+}
+});
+}
+
+function moveStars() {
+stars.forEach(star => {
+  star.z -= 4;
+  if (star.z <= 0) {
+    star.z = w;
+  }
+});
+}
+
+function animate() {
+drawStars();
+moveStars();
+requestAnimationFrame(animate);
+}
+
+createStars(500);
+animate();
+
+// Logo click triggers shop
+const logo = document.getElementById('logo');
+const shop = document.getElementById('shop');
+
+logo.addEventListener('click', () => {
+  logo.style.display = 'none';
+  setTimeout(() => {
+    shop.style.opacity = 1;
+    shop.style.pointerEvents = 'auto';
+    canvas.style.display = 'none'; // stop star tunnel
+  }, 3000); // 3 seconds of star tunnel
+});
+</script>
+
