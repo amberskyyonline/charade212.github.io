@@ -4,47 +4,36 @@
   <meta charset="UTF-8">
   <title>charade212</title>
   <style>
-    body {
+    body, html {
       margin: 0;
       padding: 0;
-      background: white;
+      background: black;
+      overflow: hidden;
       font-family: sans-serif;
     }
 
-    /* Loader styles */
-    #loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-    }
-
-    #loader img {
-      width: 100px;
-      animation: spin 3s linear infinite;
+    #logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       cursor: pointer;
+      z-index: 2;
     }
 
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    /* Shop grid hidden initially */
     #shop {
       opacity: 0;
       pointer-events: none;
-      transition: opacity 1s ease;
+      position: relative;
+      z-index: 3;
+      background: white;
+      color: black;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 30px;
       padding: 50px;
+      height: 100vh;
+      overflow-y: auto;
     }
 
     .product {
@@ -64,38 +53,49 @@
 </head>
 <body>
 
-<div id="loader">
-  <img src="/images/logo.png" alt="Charade212 Logo">
-</div>
+<canvas id="stars"></canvas>
+
+<img id="logo" src="/images/logo.png" alt="Logo" width="150">
 
 <div id="shop">
-  <!-- Example product -->
   <div class="product">
     <img src="/products/product1.jpg" alt="Product 1">
     <p>Product Name</p>
     <p>$50</p>
   </div>
-  <!-- Add more products -->
+  <!-- Add more products here -->
 </div>
 
 <script>
-  const loader = document.getElementById('loader');
-  const shop = document.getElementById('shop');
+// Star tunnel effect
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+let stars = [];
+let w, h;
 
-  loader.addEventListener('click', () => {
-    loader.style.display = 'none';
-    shop.style.opacity = 1;
-    shop.style.pointerEvents = 'auto';
-  });
+function resizeCanvas() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
 
-  // Optional: Auto-load after 5 seconds
-  // setTimeout(() => {
-  //   loader.style.display = 'none';
-  //   shop.style.opacity = 1;
-  //   shop.style.pointerEvents = 'auto';
-  // }, 5000);
-</script>
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
 
-</body>
-</html>
+function createStars(count) {
+  stars = [];
+  for (let i = 0; i < count; i++) {
+    stars.push({
+      x: Math.random() * w - w/2,
+      y: Math.random() * h - h/2,
+      z: Math.random() * w
+    });
+  }
+}
 
+function drawStars() {
+  ctx.fillStyle = 'black';
+  ctx.fillRect(0, 0, w, h);
+  ctx.fillStyle = 'white';
+  stars.forEach(star => {
+    let k = 128.0 / star.z;
+    let x = star.x * k +*
