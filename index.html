@@ -73,18 +73,6 @@
 </div>
 
 <script>
-  const warpSound = document.getElementById('warpSound');
-
-logo.addEventListener('click', () => {
-  warpSound.play(); // Play sound on click
-  logo.style.display = 'none';
-  setTimeout(() => {
-    shop.style.opacity = 1;
-    shop.style.pointerEvents = 'auto';
-    canvas.style.display = 'none'; // stop star tunnel
-  }, 3000); // 3 seconds of star tunnel
-});
-
 // Star tunnel effect
 const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
@@ -145,11 +133,12 @@ function animate() {
 createStars(500);
 animate();
 
-// Logo click triggers shop
 const logo = document.getElementById('logo');
 const shop = document.getElementById('shop');
+const warpSound = document.getElementById('warpSound');
 
 logo.addEventListener('click', () => {
+  warpSound.play(); // Play sound on click
   logo.style.display = 'none';
   setTimeout(() => {
     shop.style.opacity = 1;
@@ -157,6 +146,7 @@ logo.addEventListener('click', () => {
     canvas.style.display = 'none'; // stop star tunnel
   }, 3000); // 3 seconds of star tunnel
 });
+
 </script>
 
 </body>
