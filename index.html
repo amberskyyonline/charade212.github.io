@@ -51,6 +51,7 @@
     }
   </style>
 </head>
+  <audio id="warpSound" src="/sounds/warp.mp3"></audio>
 <body>
 
 <canvas id="stars"></canvas>
@@ -72,6 +73,18 @@
 </div>
 
 <script>
+  const warpSound = document.getElementById('warpSound');
+
+logo.addEventListener('click', () => {
+  warpSound.play(); // Play sound on click
+  logo.style.display = 'none';
+  setTimeout(() => {
+    shop.style.opacity = 1;
+    shop.style.pointerEvents = 'auto';
+    canvas.style.display = 'none'; // stop star tunnel
+  }, 3000); // 3 seconds of star tunnel
+});
+
 // Star tunnel effect
 const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
