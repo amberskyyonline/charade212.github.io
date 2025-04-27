@@ -63,6 +63,11 @@
     <p>Product Name</p>
     <p>$50</p>
   </div>
+  <div class="product">
+    <img src="/products/product2.jpg" alt="Product 2">
+    <p>Product Name</p>
+    <p>$60</p>
+  </div>
   <!-- Add more products here -->
 </div>
 
@@ -98,31 +103,30 @@ function drawStars() {
   ctx.fillStyle = 'white';
   stars.forEach(star => {
     let k = 128.0 / star.z;
-    let x = star.x * k +*
-      let x = star.x * k + w/2;
-let y = star.y * k + h/2;
-if (x >= 0 && x <= w && y >= 0 && y <= h) {
-  let size = (1 - star.z / w) * 3;
-  ctx.beginPath();
-  ctx.arc(x, y, size, 0, 2 * Math.PI);
-  ctx.fill();
-}
-});
+    let x = star.x * k + w/2;
+    let y = star.y * k + h/2;
+    if (x >= 0 && x <= w && y >= 0 && y <= h) {
+      let size = (1 - star.z / w) * 3;
+      ctx.beginPath();
+      ctx.arc(x, y, size, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+  });
 }
 
 function moveStars() {
-stars.forEach(star => {
-  star.z -= 4;
-  if (star.z <= 0) {
-    star.z = w;
-  }
-});
+  stars.forEach(star => {
+    star.z -= 4;
+    if (star.z <= 0) {
+      star.z = w;
+    }
+  });
 }
 
 function animate() {
-drawStars();
-moveStars();
-requestAnimationFrame(animate);
+  drawStars();
+  moveStars();
+  requestAnimationFrame(animate);
 }
 
 createStars(500);
@@ -142,3 +146,5 @@ logo.addEventListener('click', () => {
 });
 </script>
 
+</body>
+</html>
