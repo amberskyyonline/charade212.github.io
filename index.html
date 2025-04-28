@@ -7,10 +7,10 @@
     body, html {
       margin: 0;
       padding: 0;
-      background: #000 url('/images/y2k-bg-tile.png') repeat; /* Background texture */
+      background: #ffffff; /* White background */
       overflow: hidden;
       font-family: 'Courier New', monospace;
-      color: white;
+      color: black;
     }
 
     canvas {
@@ -34,7 +34,7 @@
     #shop {
       opacity: 0;
       pointer-events: none;
-      background: #e0e0e0;
+      background: #f0f0f0;
       width: 800px;
       margin: 50px auto;
       padding: 20px;
@@ -85,6 +85,17 @@
       color: #fff;
       box-shadow: 6px 6px 0 #000, -3px -3px 0 #fff;
     }
+
+    .banner {
+      width: 100%;
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .banner img {
+      height: 60px;
+      image-rendering: pixelated;
+    }
   </style>
 </head>
 
@@ -93,6 +104,11 @@
 
   <canvas id="stars"></canvas>
   <img id="logo" src="/images/logo.png" alt="Logo" width="150">
+
+  <!-- GIF Banner for Y2K flavor -->
+  <div class="banner">
+    <img src="/images/banner.gif" alt="Y2K Banner">
+  </div>
 
   <div id="shop">
     <div class="product">
