@@ -7,9 +7,9 @@
     body, html {
       margin: 0;
       padding: 0;
-      background: #ffffff; /* White background */
+      background: #ffffff; /* Clean white */
       overflow: hidden;
-      font-family: 'Courier New', monospace;
+      font-family: Arial, sans-serif;
       color: black;
     }
 
@@ -34,67 +34,37 @@
     #shop {
       opacity: 0;
       pointer-events: none;
-      background: #f0f0f0;
-      width: 800px;
-      margin: 50px auto;
+      max-width: 600px;
+      margin: 100px auto;
       padding: 20px;
-      border: 3px solid #000;
-      box-shadow: inset 5px 5px 0 #000;
       position: relative;
       z-index: 3;
     }
 
     .product {
-      background: #fff;
-      border: 2px solid #000;
-      margin-bottom: 30px;
-      padding: 15px;
-      box-shadow: 4px 4px 0 #000;
-      display: flex;
-      gap: 20px;
-      align-items: center;
+      margin-bottom: 40px;
+      text-align: center;
     }
 
     .product img {
-      width: 120px;
+      width: 300px;
       height: auto;
-      border: 2px solid #000;
-      image-rendering: pixelated;
-    }
-
-    .product-info {
-      flex: 1;
     }
 
     button {
-      background: linear-gradient(to bottom, #e0e0e0, #c0c0c0);
-      color: #000000;
-      border: 2px solid #000000;
-      padding: 10px 25px;
-      font-family: 'Courier New', monospace;
+      background: black;
+      color: white;
+      border: none;
+      padding: 10px 30px;
+      font-family: Arial, sans-serif;
       font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      box-shadow: 4px 4px 0 #000, -2px -2px 0 #fff;
-      cursor: crosshair;
-      transition: 0.2s ease;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 15px;
     }
 
     button:hover {
-      background: #ff6600;
-      color: #fff;
-      box-shadow: 6px 6px 0 #000, -3px -3px 0 #fff;
-    }
-
-    .banner {
-      width: 100%;
-      text-align: center;
-      margin: 10px 0;
-    }
-
-    .banner img {
-      height: 60px;
-      image-rendering: pixelated;
+      background: #555;
     }
   </style>
 </head>
@@ -103,23 +73,16 @@
   <audio id="warpSound" src="/sounds/warp.mp3"></audio>
 
   <canvas id="stars"></canvas>
-  <img id="logo" src="/images/logo.png" alt="Logo" width="150">
-
-  <!-- GIF Banner for Y2K flavor -->
-  <div class="banner">
-    <img src="/images/banner.gif" alt="Y2K Banner">
-  </div>
+  <img id="logo" src="/images/logo.png" alt="Logo" width="120">
 
   <div id="shop">
     <div class="product">
       <img src="/products/cha-cha-trucker.jpg" alt="Cha Cha Trucker Hat">
-      <div class="product-info">
-        <p><strong>Cha Cha Trucker Hat</strong></p>
-        <p>$20</p>
-        <a href="https://buy.stripe.com/9AQ01n7hP7wZgmsfYY" target="_blank">
-          <button>Buy Now</button>
-        </a>
-      </div>
+      <h2>Cha Cha Trucker Hat</h2>
+      <p>$20</p>
+      <a href="https://buy.stripe.com/9AQ01n7hP7wZgmsfYY" target="_blank">
+        <button>Buy Now</button>
+      </a>
     </div>
   </div>
 
@@ -158,7 +121,7 @@ function drawStars() {
     let x = star.x * k + w/2;
     let y = star.y * k + h/2;
     if (x >= 0 && x <= w && y >= 0 && y <= h) {
-      let size = (1 - star.z / w) * 3;
+      let size = (1 - star.z / w) * 2;
       ctx.beginPath();
       ctx.arc(x, y, size, 0, 2 * Math.PI);
       ctx.fill();
@@ -168,7 +131,7 @@ function drawStars() {
 
 function moveStars() {
   stars.forEach(star => {
-    star.z -= 4;
+    star.z -= 3;
     if (star.z <= 0) {
       star.z = w;
     }
@@ -181,7 +144,7 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-createStars(500);
+createStars(400);
 animate();
 
 // Logo click triggers shop
